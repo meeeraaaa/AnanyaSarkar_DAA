@@ -2,17 +2,19 @@
 using namespace std;
 class okay{
     public:
-void find(int k,int a[],int n)
+int find(int k,int a[],int f,int l)
 {
-    for(int i=1;i<=n;i++)
+    int mid=(f+l)/2;
+    if(a[mid]==k)return (mid);
+    else if(a[mid]>k)
     {
-        if(a[i]==k)
-        {
-            cout<<"found";
-            return;
-        }
+        return find(k,a,f,mid-1);
     }
-    cout<<"not found";
+    else if(a[mid]<k)
+    {
+       return find(k,a,mid+1,l); 
+    }
+    else return -999;
 }
 };
 int main()
@@ -31,7 +33,9 @@ int main()
             cin>>a[j-1];
             
         }cin>>k;
-            dd.find(k,a,n);
+            int f=dd.find(k,a,0,n-1);
+            if(f!=-999)cout<<f;
+            else cout<<"not present";
     }
 
 }
